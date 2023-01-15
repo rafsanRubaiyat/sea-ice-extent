@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafsan Siddiqui's Site</title> 
+    <title>Project: Sea Ice Extent</title> 
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/slick.css" type="text/css" /> 
-    <link rel="stylesheet" href="css/templatemo-style.css"> 
+    <link rel="stylesheet" href="css/templatemo-style.css">  
 <!--
-    
+     
 TemplateMo 560 Astro Motion
 
 https://templatemo.com/tm-560-astro-motion
@@ -38,19 +38,19 @@ https://templatemo.com/tm-560-astro-motion
                         <div class="circle"></div>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#0" data-no="2">Projects</a>
-                        <div class="circle"></div>
+                        <a class="nav-link" href="https://rafsanrubaiyat.github.io/#0" data-no="2" class="btn btn-primary tm-intro-btn tm-page-link">Projects</a> 
+                        <div class="circle"></div> 
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="https://drive.google.com/file/d/1wNJqms_98WbEcal6RtZUSfwiCzLfsUY2/view" target="_blank" data-no="3">Resume</a>
                         <div class="circle"></div>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#0" data-no="4">About</a>
+                        <a class="nav-link" href="https://rafsanrubaiyat.github.io/#0" data-no="4">About</a> 
                         <div class="circle"></div>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#0" data-no="5">Contact</a>
+                        <a class="nav-link" href="https://rafsanrubaiyat.github.io/#0" data-no="5">Contact</a>
                         <div class="circle"></div>
                       </li>
                     </ul>
@@ -62,28 +62,264 @@ https://templatemo.com/tm-560-astro-motion
       </div>    
     
     <div class="page-container">
-      <p> A paragraph: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed eleifend laoreet magna. Donec auctor libero id massa. Aenean sit amet enim ac urna dictum lobortis. Praesent convallis sapien eu tortor. Phasellus eros tortor, lacinia ut, pellentesque in, venenatis in, elit. Suspendisse potenti. Proin sed pede. Suspendisse elementum, augue et venenatis malesuada, nisl pede commodo eros, id faucibus purus arcu vel risus. Nullam at metus.
+      <p> <br> <br>  
+        
+        <font size="+2">Statistical Data Analytics Case Study:  <b>  Extent of Ice Flow Over Time </b></font>  
+        <br> 
+        <font size="+1"><b> <br> Introduction: <br></b></font> 
 
-        A blockquote: Morbi ornare, enim ac convallis pellentesque, metus arcu sagittis diam, nec fringilla nunc eros id arcu. Nunc sagittis ligula id justo. Nam et pede a mi facilisis consequat. Quisque tincidunt, turpis vel commodo lacinia, arcu odio bibendum metus, eget elementum ipsum eros sit amet velit.
-        
-        And, this is a link inside a paragraph. Donec non dui. Morbi fringilla imperdiet lorem. Fusce risus diam, rutrum eu, hendrerit et, accumsan non, neque. Fusce vitae pede ut massa sodales mattis. Nulla sed justo.
-        
-        Ordered and unordered lists
-        Posted by: MLP Design | Date | 34 comment(s) | PermaLink
-        The ordered list
-        <font size="+2">This is bigger text.One - Uno - Un
-        Two - Dos - Deux
-        Three - Tres - Trois
-        Four - Quatro - Quatre
-        Five - Cinco - Cinq 
-        And this one is linked </font>
-        The unordered list
-        Suspendisse potenti
-        Proin sed pede
-        Maecenas ac nisi
-        Curabitur eget enim id
-        And this one is linked as well
-        Nunc metus nisl dapibus </p>
+        Sea ice extent is a measurement of the area of the ocean where ice covers at least 15 percent of the ocean surface, and sea
+ice area only considers the parts of the ocean completely covered by ice (National Snow & Ice Data Center, n.d.). For
+this case-study, the sea ice extent and area data for the north and south poles for each month have been acquired
+separately from the National Snow & Ice Data Center website. Then they have been merged to a large csv data file
+resulting in a time series dataset, which contains a total of 526 monthly observations of sea ice extent and area data from
+November 1978 to August 2022. Then the time series data have been decomposed to its components, and regression
+analyses have been conducted based on yearly and monthly movements in the sea ice extent value. <br> 
+
+
+<font size="+1"><b> <br> Data management:  <br></b></font> 
+
+Out of the 526 monthly observations, 3 had bad data points. To resolve that issue, the dataset has been sorted based on
+the month number and then backward filling (Velicer & Colby, 2005) has been used to fill the bad data points in the
+dataset. So, the data points from December 1988 were injected into the bad data points of December 1987. The year and
+the month columns of the dataset have been merged to get the ‘dates’ column. That would be a helpful date-type
+independent variable to analyze the time-series data. The dataset looks like this:   
+
+
+<br> 
+<br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/Picture1.png" alt="" />
+            <div class="caption">Figure 1: Snippet of the sea extent dataset. </div>
+            <br />
+            
+        </td> 
+    </tr>
+</table> 
+
+The ‘dates’ column has been made the index of the data-frame for the time series analysis. N_extent and S_extent
+represents the extent of sea ice in the North and South pole respectively, N_area and S_area represents the sea ice areas. 
+
+<font size="+1"><b> <br> Data visualization and seasonality:<br></b></font>  
+To understand how the sea ice extent have been changing over the years, two separate plots have been generated with the
+N_extent and S_extent data.  
+
+<br> 
+<br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/N_time.png" alt="" />
+            <div class="caption">Figure 2: Time series plot of North pole sea ice extent</div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/S_time.png" alt="" />
+            <div class="caption">Figure 3: Time series plot of South pole sea ice extent</div> 
+            <br />
+            
+        </td>
+    </tr>
+</table>
+
+        These plots show that the sea ice extent in both the south pole and the north pole demonstrate a sinusoidal seasonality in
+their data behavior. We can further investigate their seasonality by plotting the month-wise box plots.  
+
+<br> <br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/box_n.png" alt="" />
+            <div class="caption">Figure 4: Month-wise box-plot of North pole sea ice extent</div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/box_s.png" alt="" />
+            <div class="caption">Figure 5: Month-wise box-plot of South pole sea ice extent</div> 
+            <br />
+            
+        </td>
+    </tr>
+</table>
+ 
+The plots above signify two opposing characteristics of sea ice extent in the North and South pole. While N_extent is
+maximum during the first three months of the year, S_extent is the minimum; also, N_extent is minimum during August
+to October, and S_extent is maximum in that time period.
+
+<font size="+1"><b> <br> Data decomposition: <br></b></font> 
+
+We need to decompose these data further to visualize the basic elements of any time series, which are:
+Trend: A general, long-term, average tendency of the data to increase or decrease during the long time period.
+Seasonality: Variations in the time series in short term (seasonal variation) or the cyclical variations in the time
+series in long term (Cyclic Variations).
+Random or Irregular movements (Residuals): The pure irregular and random movement in the time series
+which is not explained by the trend. 
+
+<br> <br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/n_decom.png" alt="" />
+            <div class="caption">Figure 6: Time series decomposition of North pole sea ice extent </div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/s_decom.png" alt="" />
+            <div class="caption">Figure 7: Time series decomposition of South pole sea ice extent</div> 
+            <br />
+            
+        </td>
+    </tr>
+</table> 
+
+
+It should be noted that, from the time series plot (run chart) of N_extent and S_extent, the seasonality and residual
+components are independent of the trend, so the additive decomposition model has been followed rather than the
+multiplicative model (Applied Time Series Analysis, n.d.).
+
+<font size="+1"><b> <br> Trend:<br></b></font>  
+To analyze the time series data for increasing or decreasing trends, the Mann-Kendall Trend Test (sometimes called the
+MK test) has been performed. Mann-Kendall test works for all distributions and the time series data doesn't have to meet
+the assumption of normality (Mann, 1945; Kendall, 1955).
+For the time series on N_extent, the result of the Mann-Kendall Test with alpha=0.05 are: trend='decreasing', h=True
+(trend is present), p=2.51e-07 and slope=-0.00417. Also, the z (normalized test statistics), Tau (Kendall Tau) and s
+(Mann-Kendal's score) values are negative, which proves that N_extent has been declining as the time forwards.
+3
+On the contrary, the result of the Mann-Kendall Test on the S_extent with alpha=0.05 are: trend = 'no trend', h=False,
+p=0.511. The test didn’t show any trend in the S_extent time series.
+Also, augmented Dickey–Fuller test (ADF) tests (Dickey & Fuller, 1979) have been conducted for the stationary test, and
+the results signify that the mean and variance of N_extent vary largely over time while those of S_extent do not. In other
+words, N_extent time series is non-stationary and S_extent time series is stationary.
+
+
+<font size="+1"><b> <br> Regression analyses and forecasts:<br></b></font>    
+Two regression models have been developed for each of the time series data, with year and month as the independent
+variables. For the yearly regressions, autoregressive integrated moving average (ARIMA) model (Box, Jenkins, &
+Bacon, 1967) has been followed as there are fewer observations. For the monthly regressions, exponential smoothing
+model (Crane & Crotty, 1967) has been followed which assigns exponentially decreasing weights as the observations get
+older.
+
+
+<br> <br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/N_monthly.png" alt="" />
+            <div class="caption">Figure 8: Monthly regression of North pole sea ice extent  </div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/n_yearly.png" alt="" />
+            <div class="caption">Figure 9: Yearly regression of North pole sea ice extent</div> 
+            <br />
+            
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/n_monthly_forecast.png" alt="" />
+            <div class="caption">Figure 10: Monthly forecast of North pole sea ice extent  </div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/s_monthly_forecast.png" alt="" />
+            <div class="caption">Figure 11: Monthly forecast of South pole sea ice extent            </div> 
+            <br />
+            
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/S_monthly.png" alt="" />
+            <div class="caption">Figure 12: Monthly regression of South pole sea ice extent  </div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/s_yearly.png" alt="" />
+            <div class="caption">Figure 13: Yearly regression of South pole sea ice extent</div> 
+            <br />
+            
+        </td>
+    </tr>
+</table> 
+
+
+<br> 
+<br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/result.png" alt="" />
+            <div class="caption">Table 1: The fit statistics to evaluate the performance of the regression analyses</div>
+            <br />
+            
+        </td> 
+    </tr>
+</table> 
+
+<br> 
+The residuals of the N_extent and S_extent data have also been diagnosed. 
+
+
+<br> <br />
+<table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="images/n_res.png" alt="" />
+            <div class="caption">Figure 14: Residual data diagnostics of North pole sea ice extent
+            </div>
+            <br />
+            
+        </td>
+        <td style="text-align: center;">
+            <img src="images/s res.png" alt="" />
+            <div class="caption">Figure 15: Residual data diagnostics of South pole sea ice extent
+            </div> 
+            <br />
+            
+        </td>
+    </tr>
+</table> 
+
+<font size="+1"><b> <br> Conclusion:<br></b></font>  
+In this case study, two time series data on sea ice extent in the North pole and the South pole have been analyzed. Then,
+yearly and monthly regression and forecast models have been developed. One interesting finding of this study is that
+there is clear evidence of shrinkage of the sea ice extent in the north pole, but no trend could be established with the sea
+ice extent in the south pole.
+
+<font size="+1"><b> <br> References: <br></b></font>  
+<i> 
+Anderson, T. W. (2011). The statistical analysis of time series. John Wiley & Sons. <br> 
+Applied Time Series Analysis. (n.d.). Retrieved from Penn State University: https://online.stat.psu.edu/stat510/lesson/5/5.1 <br> 
+Box, G. E., Jenkins, G. M., & Bacon, D. W. (1967). Models for Forecasting Seasonal and Non-seasonal Time Series. . Wisconsin
+Univ Madison Dept of Statistics. <br> 
+Crane, D. B., & Crotty, J. R. (1967). A two-stage forecasting model: Exponential smoothing and multiple regression. Management
+Science, 13(8), B-501. <br> 
+Dickey, D. A., & Fuller, W. A. (1979). Distribution of the estimators for autoregressive time series with a unit root. Journal of the
+American statistical association, 74(366a), 427-431. <br> 
+Kendall, M. (1955.). Rank Correlation Methods. Griffin, London. <br> 
+Mann, H. (1945. ). Nonparametric tests against trend. Econometrica, 13, 245-259. <br>  
+National Snow & Ice Data Center. (n.d.). Retrieved from http://nsidc.org/arcticseaicenews/ <br> 
+Velicer, W. F., & Colby, S. M. (2005). A comparison of missing-data procedures for ARIMA time-series analysis. Educational and
+Psychological Measurement, 65(4), 596-615.  <br> <br> <br> 
+
+
+<font size="+2"><b> <a class="nav-link" href="https://github.com/rafsanRubaiyat/sea-ice-extent" 
+    target="_blank" data-no="3">Link to the Github repository</a></b></font>
+
+</i> 
+
+
+
+    </p>
       </div>
       </body>
 </html> 
